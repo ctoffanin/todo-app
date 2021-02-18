@@ -2,3 +2,27 @@
   padding: 30px;
   background-color: white;
 }
+
+form,
+.todo-container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.todo {
+  border: 1px solid rgb(36, 110, 194);
+  border-radius: 5px;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+input[type='text'] {
+  padding: 0.5em;
+  margin: 0.5em;
+  width: 420px;
+}
+
+button {
+  padding: 0.5em;
+  margin: 0.5em;
+}
