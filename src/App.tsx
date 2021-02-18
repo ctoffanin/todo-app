@@ -1,11 +1,21 @@
 import type { FunctionComponent } from 'react';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import SubmitForm from './components/SubmitForm';
+import TodoList from './components/TodoList';
 
 const App: FunctionComponent = () => {
   return (
-    <div>
-      <p>
-        Edit <code>src/App.tsx</code> and save to reload.
-      </p>
+    <div className="app">
+      <div className="container">
+        <header className="text-center mb-4">
+          <h1>Todo List</h1>
+        </header>
+
+        <SubmitForm />
+        <TodoList />
+      </div>
     </div>
   );
 };
