@@ -26,7 +26,7 @@ const App: FunctionComponent = () => {
       <div className="container">
         <h1 className="text-center mb-3">Todo List</h1>
         <Form todos={todos} setTodos={setTodos} />
-        <TodoList todos={todos} />
+        <TodoList todos={todos} setTodos={setTodos} />
       </div>
     </div>
   );
