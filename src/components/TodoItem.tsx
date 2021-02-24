@@ -7,7 +7,7 @@ type TodoProps = {
 };
 
 const TodoItem: FunctionComponent<TodoProps> = ({ todo }) => (
-  <div className="todo" style={{ textDecoration: todo.completed ? 'line-through' : '' }}>
+  <div className="todo" style={{ textDecoration: todo.isCompleted ? 'line-through' : '' }}>
     {todo.title}
   </div>
 );

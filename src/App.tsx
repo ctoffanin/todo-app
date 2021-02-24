@@ -1,4 +1,5 @@
 import { FunctionComponent, useState } from 'react';
+import type { Todo } from './types/todos.types';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -6,18 +7,18 @@ import Form from './components/Form';
 import TodoList from './components/TodoList';
 
 const App: FunctionComponent = () => {
-  const [todos, setTodos] = useState([
+  const [todos, setTodos] = useState<Array<Todo>>([
     {
       id: 1,
       title: 'Task 1',
-      completed: false,
+      isCompleted: false,
     },
     {
       id: 2,
       title: 'Task 2',
-      completed: true,
+      isCompleted: true,
     },
-    { id: 3, title: 'Task 3', completed: false },
+    { id: 3, title: 'Task 3', isCompleted: false },
   ]);
 
   return (

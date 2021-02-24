@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, FunctionComponent, useState } from 'react';
 import type { Todo } from '../types/todos.types';
 
 type FormProps = {
-  todos: Array<Todo>;
+  todos: ReadonlyArray<Todo>;
   setTodos: (todos: Array<Todo>) => void;
 };
 
@@ -10,15 +10,15 @@ const Form: FunctionComponent<FormProps> = ({ todos, setTodos }) => {
   const [value, setValue] = useState('');
 
   const addTodo = (title: string) => {
-    const newTodos = [...todos, { id: Date.now(), title, completed: false }];
+    const newTodos = [...todos, { id: Date.now(), title, isCompleted: false }];
     setTodos(newTodos);
   };
 
-  const handleValue = (event: ChangeEvent) => {
+  const onChange = (event: ChangeEvent) => {
     setValue((event.target as HTMLTextAreaElement).value);
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const onSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (!value) return;
 
@@ -27,12 +27,12 @@ const Form: FunctionComponent<FormProps> = ({ todos, setTodos }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onSubmit}>
       <input
         type="text"
         className="input"
         value={value}
-        onChange={handleValue}
+        onChange={onChange}
         placeholder="Add new todo"
       />
       <button className="todo-button" type="submit">

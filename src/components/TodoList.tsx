@@ -3,7 +3,7 @@ import type { Todo } from '../types/todos.types';
 import TodoItem from './TodoItem';
 
 type TodoListProps = {
-  todos: Array<Todo>;
+  todos: ReadonlyArray<Todo>;
 };
 
 const TodoList: FunctionComponent<TodoListProps> = ({ todos }) => (
