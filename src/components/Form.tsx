@@ -11,6 +11,8 @@ const Form: FunctionComponent<FormProps> = ({ todos, setTodos }) => {
 
   const addTodo = (title: string) => {
     const newTodos = [...todos, { id: Date.now(), title, isCompleted: false }];
+
+    window.localStorage.setItem('todos', JSON.stringify(newTodos));
     setTodos(newTodos);
   };
 

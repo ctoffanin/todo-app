@@ -8,19 +8,9 @@ import TodoList from './components/TodoList';
 
 const App: FunctionComponent = () => {
   const [pendingTodos, setPendingTodos] = useState(0);
-  const [todos, setTodos] = useState<Array<Todo>>([
-    {
-      id: 1,
-      title: 'Task 1',
-      isCompleted: false,
-    },
-    {
-      id: 2,
-      title: 'Task 2',
-      isCompleted: true,
-    },
-    { id: 3, title: 'Task 3', isCompleted: false },
-  ]);
+  const [todos, setTodos] = useState<Array<Todo>>(
+    JSON.parse(localStorage.getItem('todos') || '[]'),
+  );
 
   useEffect(() => {
     setPendingTodos(todos.filter((todo) => !todo.isCompleted).length);

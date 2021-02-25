@@ -12,6 +12,7 @@ const TodoList: FunctionComponent<TodoListProps> = ({ todos, setTodos }) => {
     const newTodos = [...todos];
     newTodos[index].isCompleted = true;
 
+    window.localStorage.setItem('todos', JSON.stringify(newTodos));
     setTodos(newTodos);
   };
 
@@ -19,6 +20,7 @@ const TodoList: FunctionComponent<TodoListProps> = ({ todos, setTodos }) => {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
 
+    window.localStorage.setItem('todos', JSON.stringify(newTodos));
     setTodos(newTodos);
   };
 
