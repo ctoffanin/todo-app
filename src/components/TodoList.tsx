@@ -5,9 +5,10 @@ import TodoItem from './TodoItem';
 type TodoListProps = {
   todos: ReadonlyArray<Todo>;
   setTodos: (todos: Array<Todo>) => void;
+  filteredTodos: ReadonlyArray<Todo>;
 };
 
-const TodoList: FunctionComponent<TodoListProps> = ({ todos, setTodos }) => {
+const TodoList: FunctionComponent<TodoListProps> = ({ todos, setTodos, filteredTodos }) => {
   const completeTodo = (index: number) => {
     const newTodos = [...todos];
     newTodos[index].isCompleted = true;
@@ -27,7 +28,7 @@ const TodoList: FunctionComponent<TodoListProps> = ({ todos, setTodos }) => {
   return (
     <div className="todo-container">
       <div className="todos">
-        {todos.map((todo, index) => (
+        {filteredTodos.map((todo, index) => (
           <TodoItem
             todo={todo}
             index={index}

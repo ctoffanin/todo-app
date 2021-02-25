@@ -19,10 +19,14 @@ form,
 input[type='text'] {
   padding: 0.5em;
   margin: 0.5em;
-  width: 420px;
+  width: 290px;
 }
 
 button {
   padding: 0.5em;
   margin: 0.5em;
+}
+
+.filter-todo {
+  margin-left: 10px;
 }
