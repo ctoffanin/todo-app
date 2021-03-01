@@ -3,7 +3,7 @@ import type { Todo } from '../types/todos.types';
 
 type FormProps = {
   todos: ReadonlyArray<Todo>;
-  setTodos: (todos: Array<Todo>) => void;
+  setTodos: (todos: ReadonlyArray<Todo>) => void;
   setStatus: (status: string) => void;
 };
 
