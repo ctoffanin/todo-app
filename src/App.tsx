@@ -1,15 +1,16 @@
 import { FunctionComponent, useEffect, useState } from 'react';
-import type { Todo } from './types/todos.types';
+import type { Todo } from './todos/todos.types';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Form from './components/Form';
 import TodoList from './components/TodoList';
+import { LOCAL_STORAGE_TODOS_KEY } from './todos/todos.utils';
 
 const App: FunctionComponent = () => {
   const [uncompletedTodos, setUncompletedTodos] = useState(0);
   const [todos, setTodos] = useState<ReadonlyArray<Todo>>(
-    JSON.parse(localStorage.getItem('todos') || '[]'),
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODOS_KEY) || '[]'),
   );
 
   const [status, setStatus] = useState('all');

@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react';
-import type { Todo } from '../types/todos.types';
+import type { Todo } from '../todos/todos.types';
 
 type TodoProps = {
   todo: Todo;

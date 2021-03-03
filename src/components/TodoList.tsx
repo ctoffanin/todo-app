@@ -1,5 +1,6 @@
 import type { FunctionComponent } from 'react';
-import type { Todo } from '../types/todos.types';
+import type { Todo } from '../todos/todos.types';
+import { LOCAL_STORAGE_TODOS_KEY } from '../todos/todos.utils';
 import TodoItem from './TodoItem';
 
 type TodoListProps = {
@@ -13,7 +14,7 @@ const TodoList: FunctionComponent<TodoListProps> = ({ todos, setTodos, filteredT
     const newTodos = [...todos];
     newTodos[index].isCompleted = true;
 
-    window.localStorage.setItem('todos', JSON.stringify(newTodos));
+    window.localStorage.setItem(LOCAL_STORAGE_TODOS_KEY, JSON.stringify(newTodos));
     setTodos(newTodos);
   };
 
@@ -21,7 +22,7 @@ const TodoList: FunctionComponent<TodoListProps> = ({ todos, setTodos, filteredT
     const newTodos = [...todos];
     newTodos.splice(index, 1);
 
-    window.localStorage.setItem('todos', JSON.stringify(newTodos));
+    window.localStorage.setItem(LOCAL_STORAGE_TODOS_KEY, JSON.stringify(newTodos));
     setTodos(newTodos);
   };
 

@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, FunctionComponent, useState } from 'react';
-import type { Todo } from '../types/todos.types';
+import type { Todo } from '../todos/todos.types';
+import { LOCAL_STORAGE_TODOS_KEY } from '../todos/todos.utils';
 
 type FormProps = {
   todos: ReadonlyArray<Todo>;
@@ -13,7 +14,7 @@ const Form: FunctionComponent<FormProps> = ({ todos, setTodos, setStatus }) => {
   const addTodo = (title: string) => {
     const newTodos = [...todos, { id: Date.now(), title, isCompleted: false }];
 
-    window.localStorage.setItem('todos', JSON.stringify(newTodos));
+    window.localStorage.setItem(LOCAL_STORAGE_TODOS_KEY, JSON.stringify(newTodos));
     setTodos(newTodos);
   };
 
