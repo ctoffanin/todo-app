@@ -4,7 +4,7 @@ import TodoItem from './TodoItem';
 
 type TodoListProps = {
   todos: ReadonlyArray<Todo>;
-  setTodos: (todos: Array<Todo>) => void;
+  setTodos: (todos: ReadonlyArray<Todo>) => void;
   filteredTodos: ReadonlyArray<Todo>;
 };
 

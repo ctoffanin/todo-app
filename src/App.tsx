@@ -8,12 +8,12 @@ import TodoList from './components/TodoList';
 
 const App: FunctionComponent = () => {
   const [uncompletedTodos, setUncompletedTodos] = useState(0);
-  const [todos, setTodos] = useState<Array<Todo>>(
+  const [todos, setTodos] = useState<ReadonlyArray<Todo>>(
     JSON.parse(localStorage.getItem('todos') || '[]'),
   );
 
   const [status, setStatus] = useState('all');
-  const [filteredTodos, setFilteredTodos] = useState<Array<Todo>>([]);
+  const [filteredTodos, setFilteredTodos] = useState<ReadonlyArray<Todo>>([]);
 
   useEffect(() => {
     setUncompletedTodos(todos.filter((todo) => !todo.isCompleted).length);
