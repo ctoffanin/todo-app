@@ -1,5 +1,5 @@
-import { FunctionComponent, useEffect, useState } from 'react';
-import type { Todo } from './todos/todos.types';
+import { FunctionComponent, useMemo, useState } from 'react';
+import type { Todo, TodoStatus } from './todos/todos.types';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -8,35 +8,34 @@ import TodoList from './components/TodoList';
 import { LOCAL_STORAGE_TODOS_KEY } from './todos/todos.utils';
 
 const App: FunctionComponent = () => {
-  const [uncompletedTodos, setUncompletedTodos] = useState(0);
-  const [todos, setTodos] = useState<ReadonlyArray<Todo>>(
-    JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODOS_KEY) || '[]'),
-  );
+  const [status, setStatus] = useState<TodoStatus>('all');
+  const [todos, setTodos] = useState<ReadonlyArray<Todo>>(() => {
+    try {
+      return JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODOS_KEY) || '[]');
+    } catch (error) {
+      throw new Error(`JSON parse error: ${error.message}`);
+    }
+  });
 
-  const [status, setStatus] = useState('all');
-  const [filteredTodos, setFilteredTodos] = useState<ReadonlyArray<Todo>>([]);
-
-  useEffect(() => {
-    setUncompletedTodos(todos.filter((todo) => !todo.isCompleted).length);
-
+  const filteredTodos = useMemo(() => {
     switch (status) {
       case 'completed':
-        setFilteredTodos(todos.filter((todo) => todo.isCompleted));
-        break;
-
+        return todos.filter((todo) => todo.isCompleted);
       case 'uncompleted':
-        setFilteredTodos(todos.filter((todo) => !todo.isCompleted));
-        break;
-
+        return todos.filter((todo) => !todo.isCompleted);
       default:
-        setFilteredTodos(todos);
+        return todos;
     }
   }, [todos, status]);
+
+  const uncompletedTodosCount = useMemo(() => todos.filter((todo) => !todo.isCompleted).length, [
+    todos,
+  ]);
 
   return (
     <div className="app">
       <div className="container">
-        <h1 className="text-center mb-3">Uncompleted Todos ({uncompletedTodos})</h1>
+        <h1 className="text-center mb-3">Uncompleted Todos ({uncompletedTodosCount})</h1>
         <Form todos={todos} setTodos={setTodos} setStatus={setStatus} />
         <TodoList todos={todos} setTodos={setTodos} filteredTodos={filteredTodos} />
       </div>

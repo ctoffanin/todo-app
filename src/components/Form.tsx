@@ -1,11 +1,11 @@
 import { ChangeEvent, FormEvent, FunctionComponent, useState } from 'react';
-import type { Todo } from '../todos/todos.types';
+import type { Todo, TodoStatus } from '../todos/todos.types';
 import { LOCAL_STORAGE_TODOS_KEY } from '../todos/todos.utils';
 
 type FormProps = {
   todos: ReadonlyArray<Todo>;
   setTodos: (todos: ReadonlyArray<Todo>) => void;
-  setStatus: (status: string) => void;
+  setStatus: (status: TodoStatus) => void;
 };
 
 const Form: FunctionComponent<FormProps> = ({ todos, setTodos, setStatus }) => {
@@ -31,7 +31,7 @@ const Form: FunctionComponent<FormProps> = ({ todos, setTodos, setStatus }) => {
   };
 
   const onSelectChange = (event: ChangeEvent) => {
-    setStatus((event.target as HTMLOptionElement).value);
+    setStatus((event.target as HTMLOptionElement).value as TodoStatus);
   };
 
   return (
