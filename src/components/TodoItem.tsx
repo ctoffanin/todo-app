@@ -1,14 +1,21 @@
 import type { FunctionComponent } from 'react';
-import type { Todo } from '../types/todos.types';
+import type { Todo } from '../todos/todos.types';
 
 type TodoProps = {
   todo: Todo;
-  index: number;
+  completeTodo: (todo: Todo) => void;
+  deleteTodo: (todo: Todo) => void;
 };
 
-const TodoItem: FunctionComponent<TodoProps> = ({ todo }) => (
+const TodoItem: FunctionComponent<TodoProps> = ({ todo, completeTodo, deleteTodo }) => (
   <div className="todo" style={{ textDecoration: todo.isCompleted ? 'line-through' : '' }}>
     {todo.title}
+    <button type="button" onClick={() => completeTodo(todo)}>
+      ✓
+    </button>
+    <button type="button" onClick={() => deleteTodo(todo)}>
+      ✕
+    </button>
   </div>
 );
 
